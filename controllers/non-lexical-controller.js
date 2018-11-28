@@ -16,16 +16,21 @@ const getAllNonLexicalWords = (req, res) => {
 const UpdateNonLexicalWords = (req, res) => {
   const { words } = req.body
 
-  NonLexicalWordsModel.update({ title: 'nonLexicalWords' }, { $push: {words : words} }, (err, data) => {
+  NonLexicalWordsModel.update({ title: 'nonLexicalWords' }, { $push: { words: words } }, (err, data) => {
+    let status
+    let response
     if (!err) {
       if (data === null) {
-        res.status(STATUS_CODES.NOT_FOUND).json(
-          { message: `Non lexical words do not exist. Please create using POST endpoint` }
-        )
-        return
+        status = STATUS_CODES.NOT_FOUND
+        response = { message: 'Non lexical words do not exist. Please create using POST endpoint' }
       }
-      res.status(STATUS_CODES.OK).json({ response: data })
-    } else res.status(STATUS_CODES.ERROR).json({ message: `Error: ${err}` })
+      status = STATUS_CODES.OK
+      response = { response: data }
+    } else {
+      status = STATUS_CODES.ERROR
+      response = { message: `Error: ${err}` }
+    }
+    res.status(status).json(response)
   })
 }
 

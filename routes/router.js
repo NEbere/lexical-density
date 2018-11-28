@@ -15,5 +15,4 @@ router.get('/non-lexical-words', nonLexicalWordsController.getAllNonLexicalWords
 
 router.put('/non-lexical-words', nonLexicalWordsController.UpdateNonLexicalWords)
 
-
 module.exports = router
