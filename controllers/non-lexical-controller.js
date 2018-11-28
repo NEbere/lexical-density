@@ -1,6 +1,12 @@
+// Local imports
 const NonLexicalWordsModel = require('../models').nonlexicalwordsModel
 const { STATUS_CODES } = require('../utils')
 
+/**
+ * getAllNonLexicalWords: API endpoint to get all non-lexical words stored in the database(MongoDB)
+ * @param { Object } req Request object
+ * @param { Object } res Response Object
+ */
 const getAllNonLexicalWords = (req, res) => {
   const query = NonLexicalWordsModel.find({ title: 'nonLexicalWords' })
   query.exec((err, nonLexicalWords) => {
@@ -13,6 +19,12 @@ const getAllNonLexicalWords = (req, res) => {
   })
 }
 
+/**
+ * UpdateNonLexicalWords: API endpoint update non-lexical words in the database
+ * Uses mongoDB Push function to add the content of request body to the array of non-lexical words in the database
+ * @param { Object } req Request object
+ * @param { Object } res Response Object
+ */
 const UpdateNonLexicalWords = (req, res) => {
   const { words } = req.body
 

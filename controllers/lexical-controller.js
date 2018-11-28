@@ -1,6 +1,12 @@
 // Local imports
 const { calculateSum, calculateComplexity, STATUS_CODES } = require('../utils')
 
+/**
+ * computeLexicalDensity: Controller function to compute the lexical density of words
+ * passed in the request body. Check if there is a query string and compute as described in the requirement document
+ * @param { Object } req 
+ * @param { Object } res 
+ */
 const computeLexicalDensity = async (req, res) => {
   let status
   let response
